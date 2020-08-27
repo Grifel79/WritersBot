@@ -1,14 +1,14 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os
+import os, random
 from telegram.ext import Updater, PicklePersistence
 import logging
 from telegram.ext import CommandHandler
 import docx
 
 def getText(filename):
-    doc = docx.Document(filename)
+    doc = docx.Document("stories/" + filename)
     fullText = []
     for para in doc.paragraphs:
         fullText.append(para.text)
@@ -30,7 +30,6 @@ hello = """ Привет! Я чат бот, который познакомит 
 # send hello message
 
 def start(update, context):
-    import os, random
     filename = random.choice(os.listdir('stories/'))
     text = getText(filename)
     context.bot.send_message(chat_id=update.effective_chat.id, text=filename)

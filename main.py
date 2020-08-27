@@ -35,7 +35,7 @@ def start(update, context):
     filename = random.choice(os.listdir('stories/'))
     text = getText(filename)
     parts = textwrap.wrap(text, width=4000, break_long_words=False)
-    # context.bot.send_message(chat_id=update.effective_chat.id, text=filename)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=os.path.splitext(filename)[0])
     for part in parts:
         context.bot.send_message(chat_id=update.effective_chat.id, text=part)
 

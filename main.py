@@ -6,6 +6,8 @@ from telegram.ext import Updater, PicklePersistence
 import logging
 from telegram.ext import CommandHandler
 import docx
+import textwrap
+
 
 def getText(filename):
     doc = docx.Document("stories/" + filename)
@@ -32,8 +34,10 @@ hello = """ Привет! Я чат бот, который познакомит 
 def start(update, context):
     filename = random.choice(os.listdir('stories/'))
     text = getText(filename)
+    parts = textwrap.wrap(text, width=5000, break_long_words=False)
     # context.bot.send_message(chat_id=update.effective_chat.id, text=filename)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=text)
+    for part in parts:
+        context.bot.send_message(chat_id=update.effective_chat.id, text=part)
 
 my_persistence = PicklePersistence(filename='persistence_file')
 updater = Updater(token=TOKEN, persistence=my_persistence, use_context=True)

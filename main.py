@@ -32,7 +32,7 @@ hello = """ Привет! Я чат бот, который познакомит 
 def start(update, context):
     filename = random.choice(os.listdir('stories/'))
     text = getText(filename)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=filename)
+    # context.bot.send_message(chat_id=update.effective_chat.id, text=filename)
     context.bot.send_message(chat_id=update.effective_chat.id, text=text)
 
 my_persistence = PicklePersistence(filename='persistence_file')

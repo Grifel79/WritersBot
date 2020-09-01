@@ -28,8 +28,6 @@ hello = """ Привет! Я чат бот, который познакомит 
 случайный рассказ
 """
 
-# send hello message
-
 def start(update, context):
     # filename = random.choice(os.listdir('stories/'))
     # text = getText(filename)
@@ -40,7 +38,10 @@ def start(update, context):
     lines = open('list.txt').read().splitlines()
     story_link = random.choice(lines)
     context.bot.send_message(chat_id=update.effective_chat.id, text=story_link)
-    context.bot.send_message(chat_id=update.effective_chat.id, text='/start')
+    context.bot.send_message(chat_id=update.effective_chat.id, text='Хочешь другой рассказ? Жми: /start')
+
+def hello(update, context):
+    context.bot.send_message(chat_id=update.effective_chat.id, text=hello)
 
 my_persistence = PicklePersistence(filename='persistence_file')
 updater = Updater(token=TOKEN, persistence=my_persistence, use_context=True)

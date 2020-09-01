@@ -7,7 +7,7 @@ import logging
 from telegram.ext import CommandHandler
 import docx
 import textwrap
-
+from telegraph import Telegraph
 
 def getText(filename):
     doc = docx.Document("stories/" + filename)
@@ -32,12 +32,16 @@ hello = """ Привет! Я чат бот, который познакомит 
 # send hello message
 
 def start(update, context):
-    filename = random.choice(os.listdir('stories/'))
-    text = getText(filename)
-    parts = textwrap.wrap(text, width=4000, break_long_words=False)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=os.path.splitext(filename)[0])
-    for part in parts:
-        context.bot.send_message(chat_id=update.effective_chat.id, text=part)
+    # filename = random.choice(os.listdir('stories/'))
+    # text = getText(filename)
+    # parts = textwrap.wrap(text, width=4000, break_long_words=False)
+    # context.bot.send_message(chat_id=update.effective_chat.id, text=os.path.splitext(filename)[0])
+    # for part in parts:
+    #     context.bot.send_message(chat_id=update.effective_chat.id, text=part)
+    f = open("list.txt")
+    lines = f.readlines()
+    story_link = random.choice(lines)
+    context.bot.send_message(chat_id=update.effective_chat.id, text=story_link)
 
 my_persistence = PicklePersistence(filename='persistence_file')
 updater = Updater(token=TOKEN, persistence=my_persistence, use_context=True)
@@ -53,3 +57,14 @@ updater.start_webhook(listen="0.0.0.0",
                           url_path=TOKEN)
 updater.bot.setWebhook('https://arcane-brushlands-32559.herokuapp.com/' + TOKEN)
 updater.idle()
+
+telegraph = Telegraph()
+
+telegraph.create_account(short_name=)
+
+response = telegraph.create_page(
+    'Hey',
+    html_content='<p>Hello, world!</p>'
+)
+
+print('https://telegra.ph/{}'.format(response['path']))

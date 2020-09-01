@@ -40,6 +40,7 @@ def start(update, context):
     lines = open('list.txt').read().splitlines()
     story_link = random.choice(lines)
     context.bot.send_message(chat_id=update.effective_chat.id, text=story_link)
+    context.bot.send_message(chat_id=update.effective_chat.id, text='/start')
 
 my_persistence = PicklePersistence(filename='persistence_file')
 updater = Updater(token=TOKEN, persistence=my_persistence, use_context=True)

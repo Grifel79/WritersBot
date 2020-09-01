@@ -7,7 +7,6 @@ import logging
 from telegram.ext import CommandHandler
 import docx
 import textwrap
-from telegraph import Telegraph
 
 def getText(filename):
     doc = docx.Document("stories/" + filename)
@@ -38,8 +37,7 @@ def start(update, context):
     # context.bot.send_message(chat_id=update.effective_chat.id, text=os.path.splitext(filename)[0])
     # for part in parts:
     #     context.bot.send_message(chat_id=update.effective_chat.id, text=part)
-    f = open("list.txt")
-    lines = f.readlines()
+    lines = open('list.txt').read().splitlines()
     story_link = random.choice(lines)
     context.bot.send_message(chat_id=update.effective_chat.id, text=story_link)
 

@@ -55,14 +55,3 @@ updater.start_webhook(listen="0.0.0.0",
                           url_path=TOKEN)
 updater.bot.setWebhook('https://arcane-brushlands-32559.herokuapp.com/' + TOKEN)
 updater.idle()
-
-telegraph = Telegraph()
-
-telegraph.create_account(short_name=)
-
-response = telegraph.create_page(
-    'Hey',
-    html_content='<p>Hello, world!</p>'
-)
-
-print('https://telegra.ph/{}'.format(response['path']))

@@ -16,7 +16,7 @@ def getText(filename):
     return '\n'.join(fullText)
 
 PORT = int(os.environ.get('PORT', 5000))
-TOKEN = '1359274306:AAHWYfzgsD3Q6v8HD7wdedqc535M65asjPQ'
+TOKEN = '1192647998:AAGR8cKnlTW1LwR7l_Fl0p4gnNjiPsIqrv0'
 
 
 # %%
